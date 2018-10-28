@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="FormUtils.js"></script>
+  </head>
+  <body>
+
+    <form name="test">
+      <input name="hide" type="hidden" value="0">
+      <table>
+        <tbody>
+          <tr>
+            <td>Text</td>
+            <td><input name="text" type="text" value="inText0"></td>
+          </tr>
+          <tr>
+            <td>Text</td>
+            <td><input name="text" type="text" value="inText1"></td>
+          </tr>
+          <tr>
+            <td>Password</td>
+            <td><input name="name" type="password" value="inPassword"></td>
+          </tr>
+          <tr>
+            <td>Number</td>
+            <td><input name="number" type="number" value="256"></td>
+          </tr>
+          <tr>
+            <td>No Name</td>
+            <td><input type="text" value="inNoName"></td>
+          </tr>
+          <tr>
+            <td>Radio</td>
+            <td>
+              <input id="male" name="gender" type="radio" value="male" checked>
+              <label for="male">男性</label>
+
+              <input id="womale" name="gender" type="radio" value="womale">
+              <label for="womale">女性</label>
+            </td>
+          </tr>
+          <tr>
+            <td>Range</td>
+            <td><input name="range" type="range" min="0" max="100"></td>
+          </tr>
+          <tr>
+            <td>CheckBox</td>
+            <td>
+              <input name="check_p0" type="checkbox">
+              <input name="check_p1" type="checkbox" checked>
+              <input name="check_p2" type="checkbox" checked>
+              <input name="check_p3" type="checkbox">
+              <input name="check_p0" type="checkbox">
+            </td>
+          </tr>
+          <tr>
+            <td>Text Area</td>
+            <td><textarea id="" name="textarea" cols="30" rows="10" value="">tatata</textarea></td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <button name="apply">Apply</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </form>
+    <script>
+      (function(w,d) {
+        function onClickApply(event) {
+          event.preventDefault();
+
+          var fu = new FormUtils(d.forms.test);
+          console.log('CreatedQuery = ' + fu.toQuery());
+          console.log('             = ' + document.location.search.substring(1));
+          console.log(fu.toObject());
+        }
+
+
+        w.addEventListener('load', function(event) {
+          d.forms.test.apply.addEventListener('click', onClickApply, false);
+        }, false);
+      }(window, document))
+    </script>
+  </body>
+</html>
